@@ -357,29 +357,8 @@
                                      integration-test goal
                                 -->
 								<exclude>**/FixtureDebugTest.java</exclude>
-								<exclude>**/AcceptanceTest.java</exclude>
-								<exclude>**/Acceptance2Test.java</exclude>
 							</excludes>
 						</configuration>
-					</execution>
-					<execution>
-						<id>acceptance</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-                        <configuration>
-                            <includes>
-                                <!-- this test actually runs fitnesse tests
-                                     therefore it will only be executed for
-                                     integration-test goal
-                                -->
-                                <include>**/AcceptanceTest.java</include>
-                                <include>**/Acceptance2Test.java</include>
-                            </includes>
-                            <forkCount>2</forkCount>
-                            <reuseForks>true</reuseForks>
-                        </configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -387,19 +366,6 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>${surefire.version}</version>
 				<executions>
-					<execution>
-						<!-- Generates suites below HsacExamples.SlimTests.UtilityFixtures.GeneratedSymbolicLinkSuite -->
-						<id>generate-suite</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-						<configuration>
-							<systemPropertyVariables>
-								<fitnesseSuiteToRun>HsacExamples.SlimTests.UtilityFixtures.GeneratedSymbolicLinkSuite.SuiteGenerator</fitnesseSuiteToRun>
-							</systemPropertyVariables>
-						</configuration>
-					</execution>
 					<execution>
 						<id>run-fitnesse-tests</id>
 						<phase>integration-test</phase>
@@ -419,6 +385,8 @@
 						<seleniumDriverClass>${seleniumDriverClass}</seleniumDriverClass>
 						<seleniumCapabilities>${seleniumCapabilities}</seleniumCapabilities>
 						<seleniumJsonCapabilities>${seleniumJsonCapabilities}</seleniumJsonCapabilities>
+						<partitionCount>${partitionCount}</partitionCount>
+						<partitionIndex>${partitionIndex}</partitionIndex>
 					</systemPropertyVariables>
 					<properties>
 						<property>
@@ -460,13 +428,11 @@
 					</execution>
 					<execution>
 						<id>combine-reports</id>
-						<phase>test</phase>
 						<goals>
 							<goal>java</goal>
 						</goals>
 						<configuration>
 							<mainClass>nl.hsac.fitnesse.junit.reportmerge.HtmlReportIndexGenerator</mainClass>
-							<skip>${skipTests}</skip>
 						</configuration>
 					</execution>
 				</executions>
