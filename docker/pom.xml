@@ -11,6 +11,9 @@
     <description>Sets up Java code to run FitNesse tests using hsac-fitnesse-fixtures in a docker container</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.outputTimestamp>2020-01-01T00:00:00Z</project.build.outputTimestamp>
+
         <hsac.pdf.version>0.0.5</hsac.pdf.version>
         <hsac.email.version>0.5.0</hsac.email.version>
         <standalone.classpath>test/wiki/fixtures</standalone.classpath>
@@ -102,8 +105,13 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+            <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.0</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -121,7 +129,7 @@
                      dependencies are available to Fitnesse without need to have Maven to run tests.
                 -->
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies-to-wiki-fixtures</id>
@@ -175,7 +183,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

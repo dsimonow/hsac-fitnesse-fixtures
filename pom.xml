@@ -37,7 +37,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputTimestamp>2020-01-01T00:00:00Z</project.build.outputTimestamp>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<hsac-fitnesse-plugin.version>1.29.0</hsac-fitnesse-plugin.version>
 		<fitnesse.version>20200308</fitnesse.version>
 		<selenium.version>3.141.59</selenium.version>
@@ -231,8 +233,18 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.1.0</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -443,7 +455,7 @@
 					 dependencies are available to Fitnesse without need to have Maven to run tests.
 				-->
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.1.1</version>
 				<configuration>
 					<includes>**/*</includes>
 					<excludes>META-INF,META-INF/**</excludes>
@@ -539,7 +551,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.1.1</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
