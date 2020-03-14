@@ -28,6 +28,7 @@ import nl.hsac.fitnesse.fixture.util.XMLFormatter;
 import nl.hsac.fitnesse.fixture.util.XPathHelper;
 import nl.hsac.fitnesse.fixture.util.XmlHttpResponse;
 import nl.hsac.fitnesse.fixture.util.ZipHelper;
+import nl.hsac.fitnesse.fixture.util.DynamicResourceHelper;
 import nl.hsac.fitnesse.fixture.util.selenium.CookieConverter;
 import nl.hsac.fitnesse.fixture.util.selenium.SeleniumHelper;
 import nl.hsac.fitnesse.fixture.util.selenium.driverfactory.DriverManager;
@@ -73,11 +74,13 @@ public class Environment {
     private LineEndingHelper lineEndingHelper = new LineEndingHelper();
     private PropertiesHelper propertiesHelper = new PropertiesHelper();
     private ZipHelper zipHelper = new ZipHelper();
+    private DynamicResourceHelper dynamicResourceHelper = new DynamicResourceHelper(); // init Helper
 
     private Environment() {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
         // Specify the data source where the template files come from.
-        cfg.setClassForTemplateLoading(getClass(), "/templates/");
+        //cfg.setClassForTemplateLoading(getClass(), "/templates/");
+        cfg = dynamicResourceHelper.invokeDynamicPathwithConfig(cfg); // returning Configuration with Path to new Templatefolder
         DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_23);
         builder.setExposeFields(true);
         cfg.setObjectWrapper(builder.build());
